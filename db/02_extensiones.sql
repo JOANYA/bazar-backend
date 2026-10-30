@@ -158,3 +158,7 @@ CREATE TABLE CierreCaja (
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB;
+
+-- Actualizar el ENUM de métodos de pago en la tabla Venta para separar Yape y Plin
+ALTER TABLE Venta 
+MODIFY COLUMN metodo_pago ENUM('Efectivo', 'Yape', 'Plin', 'Fiado', 'Tarjeta') NOT NULL;

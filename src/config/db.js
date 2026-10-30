@@ -8,10 +8,10 @@ const ZONA = process.env.DB_TIMEZONE || '-05:00';
 const usarSSL = String(process.env.DB_SSL || 'false').toLowerCase() === 'true';
 
 const pool = mysql.createPool({
-  host: process.env.DB_HOST || 'localhost',
-  port: Number(process.env.DB_PORT) || 3306,
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || '123456',
+  host: process.env.DB_HOST || 'mysql-2ba43487-gaaaa.c.aivencloud.com',
+  port: Number(process.env.DB_PORT) || 17760,
+  user: process.env.DB_USER || 'avnadmin',
+  password: process.env.DB_PASSWORD || '',
   database: process.env.DB_NAME || 'db_bazar_vecino',
   waitForConnections: true,
   connectionLimit: 10,

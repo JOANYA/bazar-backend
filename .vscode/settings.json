@@ -13,6 +13,20 @@
             "name": "root",
             "database": "db_bazar_vecino",
             "username": "root"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "mysql-2ba43487-gaaaa.c.aivencloud.com",
+            "port": 17760,
+            "driver": "MySQL",
+            "name": "TiendaInventario",
+            "database": "db_bazar_vecino",
+            "username": "avnadmin"
         }
     ]
 }
