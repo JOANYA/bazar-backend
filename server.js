@@ -1,15 +1,23 @@
-require('dotenv').config();
-const app = require('./app');
-const { probarConexion } = require('./src/config/db');
+const express = require('express');
+const cors = require('cors'); // <--- 1. Importar cors
+const app = express();
 
-const puerto = process.env.PORT || 3000;
+// 2. Configurar CORS para permitir peticiones desde tu frontend en Vercel y localhost
+const dominiosPermitidos = [
+  'https://bazar-frontend-xi.vercel.app', // Tu enlace de Vercel
+  'http://localhost:4200'                 // Para cuando pruebas localmente
+];
 
-app.listen(puerto, async () => {
-  console.log(`✅ API del bazar escuchando en http://localhost:${puerto}`);
-  try {
-    const { db, ahora } = await probarConexion();
-    console.log(`✅ MySQL conectado: ${db} (hora del negocio: ${ahora})`);
-  } catch (e) {
-    console.error('❌ No se pudo conectar a MySQL:', e.message);
-  }
-});
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || dominiosPermitidos.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Bloqueado por la política CORS'));
+    }
+  },
+  credentials: true
+}));
+
+app.use(express.json());
+// ... aquí van tus rutas normales (app.use('/auth', ...), etc.)
