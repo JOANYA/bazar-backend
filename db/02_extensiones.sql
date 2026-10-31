@@ -162,3 +162,9 @@ CREATE TABLE CierreCaja (
 -- Actualizar el ENUM de métodos de pago en la tabla Venta para separar Yape y Plin
 ALTER TABLE Venta 
 MODIFY COLUMN metodo_pago ENUM('Efectivo', 'Yape', 'Plin', 'Fiado', 'Tarjeta') NOT NULL;
+
+
+--actualizar las columnas de mysql de yape_plin a yape plin por separado
+ALTER TABLE CierreCaja 
+ADD COLUMN ventas_yape DECIMAL(10,2) DEFAULT 0 AFTER ventas_efectivo,
+ADD COLUMN ventas_plin DECIMAL(10,2) DEFAULT 0 AFTER ventas_yape;
