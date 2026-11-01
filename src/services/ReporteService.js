@@ -59,11 +59,11 @@ class ReporteService {
       cierre_hora: cierre ? cierre.fecha_hora_cierre : null,
       num_ventas: ventasRows.reduce((a, r) => a + r.n, 0),
       // TOTAL VENDIDO: mercadería vendida ese día, al contado y al crédito.
-      total_vendido: suma(ventas.efectivo, ventas.yape_plin, ventas.tarjeta, ventas.fiado),
+      total_vendido: suma(ventas.efectivo, ventas.yape, ventas.plin, ventas.tarjeta, ventas.fiado),
       ventas,
       cobros_deuda: cobrosDeuda,
       // RECAUDACIÓN: dinero que realmente entró = ventas al contado + deudas cobradas. El fiado NO entra.
-recaudacion: suma(ventas.efectivo, ventas.yape, ventas.plin, ventas.tarjeta, cobrosDeuda.total),      // FIADO GENERADO: crédito otorgado en las ventas de ese día. Los abonos NO se le restan:
+      recaudacion: suma(ventas.efectivo, ventas.yape, ventas.plin, ventas.tarjeta, cobrosDeuda.total),      // FIADO GENERADO: crédito otorgado en las ventas de ese día. Los abonos NO se le restan:
       // son dinero recuperado de deudas (se muestran aparte) y no están ligados a una venta concreta.
       fiado_generado: ventas.fiado,
       // COBRANZA DE DEUDAS: abonos recibidos ese día (normalmente de fiados de días anteriores).
